@@ -2,6 +2,8 @@ package com.productos.productosService.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.productos.productosService.Service.ProductoService;
 import com.productos.productosService.model.producto.Producto;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoController {
@@ -25,9 +28,11 @@ public class ProductoController {
     }
 
     @GetMapping
-    public List<Producto> listar() {
-        return service.findAll();
+    public ResponseEntity<List<Producto>> listar() {
+        List<Producto> productos = service.findAll();
+        return ResponseEntity.ok(productos);
     }
+
 
     @GetMapping("/{id}")
     public Producto obtenerPorId(@PathVariable Long id) {
