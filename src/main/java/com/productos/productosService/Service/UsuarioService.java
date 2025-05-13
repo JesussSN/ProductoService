@@ -7,9 +7,10 @@ import com.productos.productosService.model.producto.Usuario;
 
 public interface UsuarioService {
 
-	List<Usuario> obtenerTodos();
-    Optional<Usuario> obtenerPorId(Long id);
-    Usuario crear(Usuario usuario);
-    Usuario actualizar(Long id, Usuario usuario);
+	public List<Usuario> obtenerTodos();
+    public Optional<Usuario> obtenerPorId(Long id);
+    public Usuario crear(Usuario usuario);
+    public Usuario actualizar(Long id, Usuario usuario);
     void eliminar(Long id);
+    public Optional<Usuario> findByCorreoElectronico(String correoElectronico);
 }

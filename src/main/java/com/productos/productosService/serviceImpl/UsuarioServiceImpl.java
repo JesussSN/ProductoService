@@ -4,6 +4,8 @@ package com.productos.productosService.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.productos.productosService.Service.UsuarioService;
@@ -14,7 +16,9 @@ import com.productos.productosService.repository.UsuarioRepository;
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
+    
     public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
@@ -31,7 +35,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario crear(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    	logger.info("Usuario recibido: {}", usuario);
+    	return usuarioRepository.save(usuario);
     }
 
     @Override
@@ -52,4 +57,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void eliminar(Long id) {
         usuarioRepository.deleteById(id);
     }
+    
+    public Optional<Usuario> findByCorreoElectronico(String correoElectronico) {
+        return usuarioRepository.findByCorreoElectronico(correoElectronico);
+    }
+
 }

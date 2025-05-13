@@ -1,5 +1,7 @@
 package com.productos.productosService.model.producto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,10 +15,13 @@ public class Usuario {
 	private String nombre;
 	
 	@Column(name="correo_electronico")
+	@JsonProperty("correo_electronico")
 	private String correoElectronico;
 	private String telefono;
 	private String direccion;
+	@Column(nullable = false)
 	private String password;
+
 
 	    // Getters y Setters
 	 public Long getId() { return id; }
