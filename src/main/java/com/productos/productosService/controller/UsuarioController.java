@@ -68,5 +68,13 @@ public class UsuarioController {
         }
         return ResponseEntity.status(401).body("Credenciales incorrectas");
     }
+    
+    @GetMapping("/email/{correo}")
+    public ResponseEntity<Usuario> obtenerPorCorreo(@PathVariable String correo) {
+        Optional<Usuario> usuarioOpt = usuarioService.findByCorreoElectronico(correo);
+        return usuarioOpt.map(ResponseEntity::ok)
+                         .orElse(ResponseEntity.notFound().build());
+    }
+
 
 }
